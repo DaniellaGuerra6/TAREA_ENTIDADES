@@ -1,0 +1,71 @@
+2026-01-25 16:48:30,304 - INFO - Chunk 1: 6 registros filtrados
+2026-01-25 16:48:39,591 - INFO - Chunk 2: 6 registros filtrados
+2026-01-25 16:48:49,220 - INFO - Chunk 3: 12 registros filtrados
+2026-01-25 16:48:55,361 - INFO - Chunk 4: 9 registros filtrados
+2026-01-25 16:49:06,474 - INFO - Chunk 5: 3 registros filtrados
+2026-01-25 16:49:14,841 - INFO - Chunk 6: 7 registros filtrados
+2026-01-25 16:49:24,904 - INFO - Chunk 7: 9 registros filtrados
+2026-01-25 16:49:35,457 - INFO - Chunk 8: 10 registros filtrados
+2026-01-25 16:49:42,476 - INFO - Chunk 9: 8 registros filtrados
+2026-01-25 16:49:48,403 - INFO - Chunk 10: 4 registros filtrados
+2026-01-25 16:49:55,219 - INFO - Chunk 11: 7 registros filtrados
+2026-01-25 16:50:00,784 - INFO - Chunk 12: 8 registros filtrados
+2026-01-25 16:50:06,724 - INFO - Chunk 13: 6 registros filtrados
+2026-01-25 16:50:13,610 - INFO - Chunk 14: 11 registros filtrados
+2026-01-25 16:50:21,241 - INFO - Chunk 15: 9 registros filtrados
+2026-01-25 16:50:29,375 - INFO - Chunk 16: 5 registros filtrados
+2026-01-25 16:50:36,996 - INFO - Chunk 17: 7 registros filtrados
+2026-01-25 16:50:45,390 - INFO - Chunk 18: 10 registros filtrados
+2026-01-25 16:50:51,788 - INFO - Chunk 19: 5 registros filtrados
+2026-01-25 16:50:58,296 - INFO - Chunk 20: 5 registros filtrados
+2026-01-25 16:51:03,514 - INFO - Chunk 21: 11 registros filtrados
+2026-01-25 16:51:09,657 - INFO - Chunk 22: 10 registros filtrados
+2026-01-25 16:51:15,358 - INFO - Chunk 23: 6 registros filtrados
+2026-01-25 16:51:21,119 - INFO - Chunk 24: 6 registros filtrados
+2026-01-25 16:51:26,641 - INFO - Chunk 25: 5 registros filtrados
+2026-01-25 16:51:32,300 - INFO - Chunk 26: 11 registros filtrados
+2026-01-25 16:51:41,988 - INFO - Chunk 27: 4 registros filtrados
+2026-01-25 16:51:47,737 - INFO - Chunk 28: 10 registros filtrados
+2026-01-25 16:51:53,913 - INFO - Chunk 29: 13 registros filtrados
+2026-01-25 16:51:59,712 - INFO - Chunk 30: 9 registros filtrados
+2026-01-25 16:55:28,868 - INFO - \U0001f50e Iniciando búsqueda para el año 2019
+2026-01-25 16:55:34,690 - INFO - Año 2019 - chunk 1: 2 registros filtrados
+2026-01-25 16:55:42,673 - INFO - Año 2019 - chunk 2: 1 registros filtrados
+2026-01-25 16:55:48,660 - INFO - Año 2019 - chunk 3: 2 registros filtrados
+2026-01-25 16:55:53,818 - INFO - Año 2019 - chunk 4: 2 registros filtrados
+2026-01-25 16:55:59,011 - INFO - Año 2019 - chunk 5: 2 registros filtrados
+2026-01-25 16:56:04,558 - INFO - Año 2019 - chunk 6: 2 registros filtrados
+2026-01-25 16:56:10,351 - INFO - Año 2019 - chunk 7: 2 registros filtrados
+2026-01-25 16:56:17,874 - INFO - Año 2019 - chunk 8: 0 registros filtrados
+2026-01-25 16:56:26,502 - INFO - Año 2019 - chunk 9: 3 registros filtrados
+2026-01-25 16:56:34,158 - INFO - Año 2019 - chunk 10: 2 registros filtrados
+2026-01-25 16:56:40,144 - INFO - Año 2019 - chunk 11: 1 registros filtrados
+2026-01-25 16:56:47,762 - INFO - Año 2019 - chunk 12: 0 registros filtrados
+2026-01-25 16:56:55,583 - INFO - Año 2019 - chunk 13: 1 registros filtrados
+2026-01-25 16:57:04,079 - INFO - Año 2019 - chunk 14: 0 registros filtrados
+2026-01-25 16:57:13,406 - INFO - Año 2019 - chunk 15: 1 registros filtrados
+2026-01-25 16:57:18,993 - INFO - Año 2019 - chunk 16: 2 registros filtrados
+2026-01-25 16:57:26,077 - INFO - Año 2019 - chunk 17: 2 registros filtrados
+2026-01-25 16:57:32,472 - INFO - Año 2019 - chunk 18: 4 registros filtrados
+2026-01-25 16:58:42,222 - INFO - \U0001f50e Iniciando descarga para el año 2019
+2026-01-25 16:58:44,149 - INFO - Año 2019 - descargadas 5000 filas
+2026-01-25 16:58:46,119 - INFO - Año 2019 - fin de registros
+2026-01-25 16:58:46,122 - INFO - \U0001f50e Iniciando descarga para el año 2020
+2026-01-25 16:58:47,698 - INFO - Año 2020 - descargadas 5000 filas
+2026-01-25 16:58:49,755 - INFO - Año 2020 - fin de registros
+2026-01-25 16:58:49,758 - INFO - \U0001f50e Iniciando descarga para el año 2021
+2026-01-25 16:58:51,559 - INFO - Año 2021 - descargadas 5000 filas
+2026-01-25 16:58:53,969 - INFO - Año 2021 - fin de registros
+2026-01-25 16:58:53,972 - INFO - \U0001f50e Iniciando descarga para el año 2022
+2026-01-25 16:58:55,547 - INFO - Año 2022 - descargadas 5000 filas
+2026-01-25 16:58:57,535 - INFO - Año 2022 - fin de registros
+2026-01-25 16:58:57,538 - INFO - \U0001f50e Iniciando descarga para el año 2023
+2026-01-25 16:58:59,729 - INFO - Año 2023 - descargadas 5000 filas
+2026-01-25 16:59:01,959 - INFO - Año 2023 - fin de registros
+2026-01-25 16:59:01,962 - INFO - \U0001f50e Iniciando descarga para el año 2024
+2026-01-25 16:59:03,517 - INFO - Año 2024 - descargadas 5000 filas
+2026-01-25 16:59:05,552 - INFO - Año 2024 - fin de registros
+2026-01-25 16:59:05,555 - INFO - \U0001f50e Iniciando descarga para el año 2025
+2026-01-25 16:59:06,732 - INFO - Año 2025 - descargadas 5000 filas
+2026-01-25 16:59:08,918 - INFO - Año 2025 - fin de registros
+2026-01-25 16:59:18,590 - INFO - Archivo consolidado guardado correctamente
