@@ -1,0 +1,108 @@
+dic_macro = {
+    'Ambiental y gestion del territorio': {
+        'Rio',
+        'Reservas y ecoparques'
+    },
+    'Productiva y de servicios': {
+        'Energia renovable',
+        'Servicios publicos',
+        'Agro',
+        'Turismo'
+    },
+    'Transporte': {
+        'Aeropuerto',
+        'Puente',
+        'Puerto',
+        'Transporte publico',
+        'Tren',
+        'Vias',
+        'Vias terciarias'
+    },
+    'Urbanismo y desarrollo metropolitano': {
+        'Parques y plazas',
+        'Vias urbanas',
+        'Vivienda',
+        'Educacion',
+        'Deporte'
+    }
+}
+
+
+
+dic_subcategorias = {
+    'Rio': {
+            'rio', 'cuenca', 'cuenca hidrografica', 'canal', 'canal hidraulico', 'afluente', 
+            'corriente hidrica', 
+            'control de inundaciones', 'proteccion de rivera', 'obras hidraulicas'
+            },
+
+    'Reservas y ecoparques': {
+            'reserva natural', 'area protegida', 'ecoparque', 'restauracion ambiental', 
+            'reforestacion','biodiversidad', 'conservacion ambiental','ecosistema', 
+            'gestion ambiental','zona costera', 'manejo ambiental', 'ecologico'
+            },
+    'Energia renovable': {
+            'energia renovable', 'energia solar', 'panel solar', 'sistema fotovoltaico',
+            'energia eolica', 'generacion electrica limpia'
+        },
+    'Servicios publicos': {
+            'servicio publico domiciliario', 'acueducto', 'alcantarillado', 
+            'tratamiento de aguas', 'agua potable', 'residuos solidos', 'aseo urbano', 
+            'disposicion final', 'gas domiciliario'
+        },
+    'Agro': {
+            'agropecuario', 'produccion agricola','ganaderia', 'desarrollo rural',
+            'sistema de riego', 'distrito de riego','asistencia tecnica rural'
+        },
+    'Turismo': {
+            'turismo', 'infraestructura turistica','atractivo turistico', 'ecoturismo',
+            'turismo cultural', 'ruta turistica'
+        }, 
+   
+    'Aeropuerto': {
+            'aeropuerto', 'infraestructura aeroportuaria', 'terminal aereo', 'aviacion civil'
+        },
+    'Puente': {
+            'puente vehicular', 'puente peatonal', 'paso elevado', 'interseccion vial','rotonda vehicular'
+        },
+    'Puerto': {
+            'puerto', 'infraestructura portuaria', 'muelle', 'embarcadero', 
+            'terminal fluvial', 'navegacion fluvial'
+        },
+    'Transporte publico': {
+            'transporte publico', 'movilidad urbana','sistema de transporte masivo',
+            'terminal de transporte', 'bus','metro', 'cicloruta', 'bicicarril'
+        },
+    'Tren': {
+            'tren', 'ferrocarril', 'infraestructura ferroviaria', 'red ferroviaria'
+        },
+    'Vias': {
+            'via nacional', 'carretera', 'red vial', 'corredor vial', 'pavimentacion vial', 
+            'mejoramiento vial'
+        },
+    'Vias terciarias': {
+            'via terciaria', 'red vial terciaria', 'camino rural', 'mejoramiento de vias rurales'
+        },
+    
+    'Parques y plazas': {
+            'parque urbano', 'plaza publica', 'espacio publico', 'zona recreativa',
+            'escenario recreativo', 'plazoleta'
+        },
+    'Vias urbanas': {
+            'via urbana', 'infraestructura urbana', 'anden', 'andenes',
+            'malla vial urbana', 'pavimentacion urbana'
+        },
+    'Vivienda': {
+            'vivienda', 'proyecto habitacional', 'mejoramiento de vivienda',
+            'urbanizacion', 'solucion de vivienda'
+        },
+    'Educacion': {
+            'educacion', 'institucion educativa', 'colegio', 'escuela', 'universidad', 
+            'infraestructura educativa', 'aulas', 'sede educativa'
+        },
+    'Deporte': {
+            'deporte', 'escenario deportivo', 'polideportivo', 'coliseo',
+            'cancha deportiva', 'unidad deportiva'
+    }
+}
+
