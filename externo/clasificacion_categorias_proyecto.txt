@@ -39,19 +39,20 @@ dic_subcategorias = {
     'Reservas y ecoparques': {
             'reserva natural', 'area protegida', 'ecoparque', 'restauracion ambiental', 
             'reforestacion','biodiversidad', 'conservacion ambiental','ecosistema', 
-            'gestion ambiental','zona costera', 'manejo ambiental', 'ecologico'
+            'gestion ambiental','zona costera', 'manejo ambiental', 'ecologico', 
+            'sendero', 'ecoturistico', 'natural'
             },
     'Energia renovable': {
             'energia renovable', 'energia solar', 'panel solar', 'sistema fotovoltaico',
             'energia eolica', 'generacion electrica limpia'
         },
     'Servicios publicos': {
-            'servicio publico domiciliario', 'acueducto', 'alcantarillado', 
+            'servicio publico', 'servicios publicos', 'domiciliario', 'acueducto', 'alcantarillado', 
             'tratamiento de aguas', 'agua potable', 'residuos solidos', 'aseo urbano', 
             'disposicion final', 'gas domiciliario'
         },
     'Agro': {
-            'agropecuario', 'produccion agricola','ganaderia', 'desarrollo rural',
+            'agropecuario', 'agricola','ganaderia', 'desarrollo rural',
             'sistema de riego', 'distrito de riego','asistencia tecnica rural'
         },
     'Turismo': {
@@ -63,7 +64,7 @@ dic_subcategorias = {
             'aeropuerto', 'infraestructura aeroportuaria', 'terminal aereo', 'aviacion civil'
         },
     'Puente': {
-            'puente vehicular', 'puente peatonal', 'paso elevado', 'interseccion vial','rotonda vehicular'
+            'puente vehicular', 'puente peatonal', 'paso elevado', 'interseccion vial','rotonda vehicular', 'puente'
         },
     'Puerto': {
             'puerto', 'infraestructura portuaria', 'muelle', 'embarcadero', 
@@ -77,8 +78,8 @@ dic_subcategorias = {
             'tren', 'ferrocarril', 'infraestructura ferroviaria', 'red ferroviaria'
         },
     'Vias': {
-            'via nacional', 'carretera', 'red vial', 'corredor vial', 'pavimentacion vial', 
-            'mejoramiento vial'
+            'vias', 'via', 'via nacional', 'carretera', 'red vial', 'corredor vial', 'pavimentacion', 
+            'mejoramiento vial', 'glorieta', 'interseccion vial'
         },
     'Vias terciarias': {
             'via terciaria', 'red vial terciaria', 'camino rural', 'mejoramiento de vias rurales'
@@ -103,6 +104,13 @@ dic_subcategorias = {
     'Deporte': {
             'deporte', 'escenario deportivo', 'polideportivo', 'coliseo',
             'cancha deportiva', 'unidad deportiva'
+    },
+
+    'Publico': {
+        'batallon', 'batallones', 'infanteria', 'estacion de policia', 'policia',
+        'aerocivil', 'insituto nacional de medicina legal', 'oficinas', 
+        'base naval', 'palacio de justucia', 'juzgado', 'superintendencia', 
+        'militar', 'militares', 'consejo', 'inpec', 'pabellon', 'pabellones'
+        'hospital', 'centro de salud', 'eps', 'clinica', 'salud'
     }
 }
-

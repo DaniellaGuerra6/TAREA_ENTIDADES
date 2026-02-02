@@ -20,7 +20,7 @@ import os, requests, time
 import pandas as pd
 
 # RUTAS
-BASE_PATH = r"C:\Users\POTENCIA\OneDrive - POTENCIA\Documents\TAREA_ENTIDADES"
+BASE_PATH = r"C:\Users\usuario\OneDrive - POTENCIA\ARCHIVOS\TAREA_ENTIDADES"
 RAW_PATH = os.path.join(BASE_PATH, "data", "0_raw")
 os.makedirs(RAW_PATH, exist_ok=True)
 
@@ -112,6 +112,6 @@ print(f"\n -----------------------"
       f"\nDimensiones: {df_final.shape}"
       f"\nColumnas: {list(df_final.columns)}")
 
-# Ruta de archivo de salida
+# EXPORTAR - Datos RAW consolidados
 output_file = os.path.join(RAW_PATH, "SECOP_RAW__2019_2025.xlsx")
 df_final.to_excel(output_file, index=False)
