@@ -27,6 +27,7 @@ TRYPATH = os.path.join(BASE_PATH, "data", "99_try")
 os.makedirs(FILTERPATH, exist_ok=True)
 os.makedirs(TRYPATH, exist_ok=True)
 df = pd.read_excel("../data/0_raw/SECOP_filtro__2019_2025.xlsx")
+
 print(f"📍 DataFrame Inicial:\n Dimensiones: {df.shape}")
 
 

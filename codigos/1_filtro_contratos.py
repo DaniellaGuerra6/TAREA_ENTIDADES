@@ -128,16 +128,19 @@ def estandarizar_descripcion(texto):
     texto = re.sub(r'[.,;:]', '', texto)
     # 3. eliminar comillas y caracteres especiales comunes
     texto = re.sub(r'[\"“”\'’]', '', texto)
-    # 4. normalizar unicode (quita tildes pero conserva ñ)
+    # 4. eliminar símbolos no semánticos específicos
+    texto = re.sub(r'[°*+]', ' ', texto)
+    # 5. normalizar unicode (quita tildes pero conserva ñ)
     texto = unicodedata.normalize("NFD", texto)
     texto = "".join(ch for ch in texto if unicodedata.category(ch) != "Mn" or ch == "ñ")
-    # 5. eliminar números
+    # 6. eliminar números
     texto = re.sub(r'\d+', '', texto)
-    # 6. eliminar caracteres no alfabéticos (excepto espacios y ñ)
+    # 7. eliminar caracteres no alfabéticos (excepto espacios y ñ)
     texto = re.sub(r'[^a-zñ\s]', ' ', texto)
-    # 7. normalizar espacios
+    # 8. normalizar espacios
     texto = re.sub(r'\s+', ' ', texto).strip()
     return texto
+
 filter['texto'] = filter['descripcion'].apply(estandarizar_descripcion)
 filter = filter.drop(columns=['descripcion'])
 
