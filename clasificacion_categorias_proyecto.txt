@@ -24,9 +24,14 @@ dic_macro = {
         'Vivienda',
         'Educacion',
         'Deporte'
+    },
+    'Publico': {
+        'Publico'
+    },
+    'Otros': {
+        'Otros' 
     }
 }
-
 
 
 dic_subcategorias = {

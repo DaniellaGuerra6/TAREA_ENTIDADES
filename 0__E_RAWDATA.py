@@ -1,30 +1,20 @@
 """
-Extracción de datos RAW desde la API de SECOP II (Datos Abiertos Colombia)
 
-Este script realiza la descarga de información contractual desde la API Socrata
-de datos.gov.co, aplicando filtros específicos sobre:
-- Orden de la entidad (Nacional)
-- Tipo de contrato (Obra)
-- Categoría principal del proceso
-- Año de firma del contrato
-
-Los datos se descargan por año, se consolidan en un único DataFrame y se almacenan en
-formato Excel como insumo RAW para procesos posteriores de limpieza, transformación y análisis.
-
-Autor: Daniella Guerra - Analísta de datos
-Empresa: POTENCIA EXPONENCIAL CONSULTORES
 """
 
 # IMPORTS
+# -------------------------
 import os, requests, time
 import pandas as pd
 
 # RUTAS
-BASE_PATH = r"C:\Users\usuario\OneDrive - POTENCIA\ARCHIVOS\TAREA_ENTIDADES"
-RAW_PATH = os.path.join(BASE_PATH, "data", "0_raw")
+# -------------------------
+BASE_PATH = r"C:\Users\usuario\OneDrive - POTENCIA\PROYECTOS\TAREA_ENTIDADES"
+RAW_PATH = os.path.join(BASE_PATH, "data", "RAW")
 os.makedirs(RAW_PATH, exist_ok=True)
 
 # CONFIGURACIÓN DE LA API
+# -------------------------
 BASE_URL = "https://www.datos.gov.co/resource/jbjy-vk9h.json"
 CHUNK_SIZE = 5000
 MAX_RETRIES = 3
@@ -80,6 +70,9 @@ def download_year(year):
         r.raise_for_status()
         data = r.json()
 
+        if not data:
+            break  # ← condición real de salida
+
         df = pd.DataFrame(data)
         df['anio'] = year
 
@@ -92,7 +85,7 @@ def download_year(year):
 
         time.sleep(SLEEP_TIME)
 
-        return pd.concat(all_chunks, ignore_index=True) if all_chunks else pd.DataFrame()
+    return pd.concat(all_chunks, ignore_index=True) if all_chunks else pd.DataFrame()
 
 
 # [MAIN]
@@ -113,5 +106,6 @@ print(f"\n -----------------------"
       f"\nColumnas: {list(df_final.columns)}")
 
 # EXPORTAR - Datos RAW consolidados
-output_file = os.path.join(RAW_PATH, "SECOP_RAW__2019_2025.xlsx")
+output_file = os.path.join(RAW_PATH, "SECOP_RAW__2019_2026.xlsx")
 df_final.to_excel(output_file, index=False)
+print(f"📁 Archivo creado en:\n{output_file}")

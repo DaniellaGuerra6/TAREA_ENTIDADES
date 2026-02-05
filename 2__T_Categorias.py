@@ -1,62 +1,35 @@
 """
-Limpieza avanzada de texto y categorización de contratos SECOP II
+ETL – Limpieza avanzada de texto y categorización semántica de contratos SECOP II
 
-Este script toma como insumo la base de contratos filtrados y estandarizados
-y aplica un proceso de análisis semántico basado en reglas para:
+Este script corresponde a la FASE 3 del proyecto ENTIDADES.
+Parte de la base de contratos filtrados y estandarizados (FASE 2) y aplica
+reglas semánticas para:
 
-- Limpiar expresiones genéricas al inicio del texto contractual
+- Limpiar expresiones genéricas no informativas al inicio del texto
 - Clasificar el objeto contractual principal
 - Identificar subcategorías temáticas del proyecto
 - Agrupar los contratos en macro categorías sectoriales
-
-El resultado es una base final categorizada, lista para análisis estratégico,
-financiero y visualización en herramientas de BI.
-
-Autor: Daniella Guerra - Analísta de datos
-Empresa: POTENCIA EXPONENCIAL CONSULTORES
 """
 
 # IMPORTS
+# -------------------------
 import pandas as pd
 import os, re
 
 # RUTAS 
-BASE_PATH = r"C:\Users\usuario\OneDrive - POTENCIA\ARCHIVOS\TAREA_ENTIDADES"
-FILTERPATH = os.path.join(BASE_PATH, "data", "2_categorized")
-TRYPATH = os.path.join(BASE_PATH, "data", "99_try")
-os.makedirs(FILTERPATH, exist_ok=True)
-os.makedirs(TRYPATH, exist_ok=True)
-df = pd.read_excel("../data/0_raw/SECOP_filtro__2019_2025.xlsx")
-
+# -------------------------
+BASE_PATH = r"C:\Users\usuario\OneDrive - POTENCIA\PROYECTOS\TAREA_ENTIDADES"
+DATAPATH = os.path.join(BASE_PATH, "data", "RAW")
+OUT_PATH = os.path.join(BASE_PATH, "data", "ARCHIVOS")
+os.makedirs(DATAPATH, exist_ok=True)
+os.makedirs(OUT_PATH, exist_ok=True)
+df = pd.read_excel(os.path.join(DATAPATH, "SECOP_CONTRATOS.xlsx"))
 print(f"📍 DataFrame Inicial:\n Dimensiones: {df.shape}")
 
 
+# FUNCIONES 
+# -------------------------
 
-# LIMPIEZA DE TEXTO 
-
-# Diccionario de palabras a omitir al inicio de los textos, palabras iniciales no informativas
-init_words = [
-        'el', 'la', 'las', 'los', 'a', 'de', 'del', 'para', 
-        'bs', 'c', 'e', 'es', 'sg', 'srt', 'mr', 'd', 'dt', 'nsa',
-        's', 'sa', 'se', 
-        'lote', 'rmtc', 'rstc', 'rtvc', 'rvlc', 'no',
-        'spa', 'oap', 'sol', 'nr', 'ce', 'srn', 'srnc',
-        'ranc', 'ratc', 'rcnc', 'fun', 'fortis', 
-        'amf', 'amfis', 'sm', 'dtnsa', 
-        'realizar', 'rrealizar', 'realizacion', 'ealizar',
-        'actividades', 'grupo', 'servicio', 'servicios',
-        'ejecucion', 'ejecutar', 'esfuerzos', 
-        'prestar', 'global', 'segunda', 'fase',
-        'obra', 'obras', 'publica', 'civil', 'civiles', 'complementarias',
-        'llevar a cabo', 'mano', 'necesarias', 'segunda',
-        'mediante', 'por', 'sistema', 'sin', 'formula', 
-        'ajuste', 'reajuste', 'todo', 'costo',
-        'aunar', 'anuar', 'unar', 'esfuerzo', 'y' , 'apoyo mutuo', 
-        'precios', 'precio', 'unitario', 'unitarios', 'fijo', 'fijos',
-        'contratar', 'bajo', 
-]
-
-# FUNCIÓN - limpiar palabras iniciales
 def limpiar_inicio(sentence, palabras_ini):
     """
     Elimina palabras iniciales no informativas de una oración.
@@ -82,18 +55,7 @@ def limpiar_inicio(sentence, palabras_ini):
         else:
             break
     return sentence
-df['texto'] = df['texto'].apply(lambda x: limpiar_inicio(x, init_words))
 
-# Verificación de limpieza
-print("\nTabla de conteo post-limpieza de texto:")
-conteo_1 = df['texto'].value_counts()
-print(f"Coincidencias {conteo_1.shape}")
-out = os.path.join(TRYPATH, 'Limpieza1.xlsx')
-conteo_1.to_excel(out) 
-
-
-
-# FUNCION - Clasificacion semantica por categorias
 def clasificar(texto, sector):
     """
     Clasifica un texto segun la primera coincidencia semántica encontrada.
@@ -137,8 +99,36 @@ def clasificar(texto, sector):
 
 
 
-# CATEGORIZACIÓN - Por objeto contractual
-objeto = {
+# LIMPIEZA DEL TEXTO
+# -------------------------
+
+# 1. Palabras inciales no informativas
+INIT_WORDS = [
+    'el', 'la', 'las', 'los', 'a', 'de', 'del', 'para', 'bs', 'c', 'e', 'es', 'sg', 
+    'srt', 'mr', 'd', 'dt', 'nsa', 's', 'sa', 'se', 'lote', 'rmtc', 'rstc', 'rtvc', 
+    'rvlc', 'no', 'spa', 'oap', 'sol', 'nr', 'ce', 'srn', 'srnc', 'ranc', 'ratc', 
+    'rcnc', 'fun', 'fortis', 'amf', 'amfis', 'sm', 'dtnsa', 'realizar', 'rrealizar', 
+    'realizacion', 'ealizar', 'actividades', 'grupo', 'servicio', 'servicios',
+    'ejecucion', 'ejecutar', 'esfuerzos', 'prestar', 'global', 'segunda', 'fase',
+    'obra', 'obras', 'publica', 'civil', 'civiles', 'complementarias',
+    'llevar a cabo', 'mano', 'necesarias', 'segunda', 'mediante', 'por', 'sistema', 
+    'sin', 'formula', 'ajuste', 'reajuste', 'todo', 'costo',
+    'aunar', 'anuar', 'unar', 'esfuerzo', 'y' , 'apoyo mutuo', 
+    'precios', 'precio', 'unitario', 'unitarios', 'fijo', 'fijos', 'contratar', 'bajo', 
+]
+df['texto'] = df['texto'].apply(
+    lambda x: limpiar_inicio(x, INIT_WORDS)
+    )
+
+# Verificación de limpieza
+print("\nTabla de conteo post-limpieza de texto:")
+conteo_1 = df['texto'].value_counts()
+print(f"Coincidencias {conteo_1.shape}")
+
+
+
+# 2. Categorización por objeto contractual
+OBJETO = {
     'Adecuacion': {'adecuacion', 'adecuar', 'adecuaciones', 'acondicionamiento', 'habilitar'},
     'Construccion': {'construccion', 'construir', 'construcciones', 'reconstruir', 'reconstruccion',
                      'demoler', 'demolicion', 'desmontaje', 'desmonte', 'desmontar', 'instalacion'},
@@ -149,18 +139,23 @@ objeto = {
 }
 
 df[["objetos", "objeto_contractual"]] = df["texto"].apply(
-    lambda x: pd.Series(clasificar(x, objeto))
+    lambda x: pd.Series(clasificar(x, OBJETO))
 )
 
 print("Tabla de conteo por objeto contractual:")
-tabla = (df["objeto_contractual"].value_counts(dropna=False).rename("conteo").reset_index())
-tabla["porcentaje"] = (tabla["conteo"] / tabla["conteo"].sum() * 100).round(2)
+tabla = (df["objeto_contractual"]
+         .value_counts(dropna=False)
+         .rename("conteo").reset_index()
+         )
+tabla["porcentaje"] = (
+    tabla["conteo"] / tabla["conteo"].sum() * 100
+    ).round(2)
 tabla.columns = ["objeto_contractual", "valor_neto", "porcentaje"]
 print(tabla)
 
 
 
-# CATEGORIZACIÓN - Por sub-categorias tematicas
+# 3. Categorización por SUB-Categorias
 dic_subcategorias = {
     'Rio': {
             'rio', 'cuenca', 'cuenca hidrografica', 'canal', 'canal hidraulico', 'afluente', 
@@ -247,7 +242,13 @@ dic_subcategorias = {
     }
 }
 
-# CATEGORIZACIÓN - Por macro-categorias sectoriales
+df[["subcategorias", "SUB"]] = df["texto"].apply(
+    lambda x: pd.Series(clasificar(x, OBJETO))
+)
+
+
+
+# 4. Categorización por MACRO-Categorías
 dic_macro = {
     'Ambiental y gestion del territorio': {
         'Rio',
@@ -282,18 +283,28 @@ dic_macro = {
         'Otros' 
     }
 }
+df['MACRO'] = df['SUB'].map(
+    {sub: macro for macro, subs in dic_macro.items() for sub in subs}
+    )
 
-df['MACRO'] = df['SUB'].map({sub: macro for macro, subs in dic_macro.items() for sub in subs})
+
+# FILTRO FINAL
+# -------------------------
 
 contratos = df[~df['MACRO'].isin(['Otros', 'Publico'])]
 print(f"📍 DataFrame filtrado por MACRO categorias:\n Dimensiones: {contratos.shape}")
 print(f"Representa: {round((contratos.shape[0] / df.shape[0] * 100),2)}%")
 
 print("Tabla de conteo por MACRO categorias proyecto:")
-tabla = (contratos["MACRO"].value_counts(dropna=False).rename("conteo").reset_index())
-tabla["porcentaje"] = (tabla["conteo"] / tabla["conteo"].sum() * 100).round(2)
+tabla = (contratos["MACRO"]
+         .value_counts(dropna=False)
+         .rename("conteo").reset_index()
+         )
+tabla["porcentaje"] = (
+    tabla["conteo"] / tabla["conteo"].sum() * 100
+    ).round(2)
 tabla.columns = ["MACRO", "conteo", "porcentaje"]
 print(tabla)
 
 # Exportar resultados
-contratos.to_excel(os.path.join(FILTERPATH, 'SECOP_CAT_final.xlsx'), index=False)
+contratos.to_excel(os.path.join(OUT_PATH, 'SECOP_CATEGORIZED.xlsx'), index=False)
