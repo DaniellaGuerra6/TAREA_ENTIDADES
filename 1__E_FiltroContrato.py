@@ -64,7 +64,6 @@ df = df.rename(columns=RENAME_COLUMNS)
 print(f"📍 Dataset base filtrado: {df.shape}")
 
 
-
 # FILTRO - Estado del contrato
 # -------------------------
 ESTADOS_CORE = [
@@ -88,9 +87,31 @@ tabla_1["porcentaje"] = (
     ).round(2)
 tabla_1.columns = ["estado_contrato", "conteo", "porcentaje"]
 print(tabla_1)
+
+# FILTRO - Contratos de fuerza pública
+filtro['nombre_entidad'] = (
+    filtro['nombre_entidad']
+    .str.replace(r'[°*+]', ' ', regex=True)
+    .str.replace(r'\d+', '', regex=True)
+    .str.strip()
+    .str.upper()
+)
+
+FUERZA_PUBLICA = [
+    "ARMADA", "COMANDO", "EJERCITO", "POLICIA", "FUERZA AEROESPACIAL",
+    "ESCUELA DE POSTGRADOS DE POLICÍA", "DIEPO", 
+    "AGENCIA LOGISTICA DE LAS FUERZAS MILITARES", 
+    "CLUB MILITAR", "BATALLON", "INPEC", "CARABINEROS", "NAVAL", 
+    "ARC-BACAIM", "BASPC Nº", "BATALLÓN DE APOYO Y SERVICIOS PARA EL COMBATE N",
+    "ESCUELA INTERNACIONAL DE ENTRENAMIENTO DE LA POLICÍA DE COLOMBIA BRIGADIER GENERAL JAIME RAMÍREZ GÓMEZ",
+    "ESCUELA SUPERIOR DE GUERRA"
+]
+
+patron = '|'.join(FUERZA_PUBLICA)
+filtro = filtro[~filtro['nombre_entidad'].str.contains(patron, case=False, na=False)]
+
 print("\nCantidad de contratos:", filtro.shape[0])
 print("Porcentaje retenido del RAW:", round(filtro.shape[0] / df.shape[0] * 100, 2), "%")
-
 
 # CLASIFICACIÓN - Familia UNSPSC
 # -------------------------

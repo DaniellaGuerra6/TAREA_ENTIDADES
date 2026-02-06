@@ -157,6 +157,17 @@ print(tabla)
 
 # 3. Categorización por SUB-Categorias
 dic_subcategorias = {
+    'Publico': {
+            'batallon', 'batallones', 'infanteria', 'estacion de policia', 'policia',
+            'aerocivil', 'insituto nacional de medicina legal', 'oficinas', 
+            'base naval', 'palacio de justucia', 'juzgado', 'superintendencia', 
+            'militar', 'militares', 'consejo', 'inpec', 'pabellon', 'pabellones'
+            'hospital', 'centro de salud', 'eps', 'clinica', 'salud',
+            'naval', 'navales', 'guardacostas', 'policial', 'artillería', 
+            'ejercito', 'militar', 'escuela naval', 'policiales', 'escuela de policia',
+            'escuela militar'
+            },
+
     'Rio': {
             'rio', 'cuenca', 'cuenca hidrografica', 'canal', 'canal hidraulico', 'afluente', 
             'corriente hidrica', 
@@ -169,19 +180,23 @@ dic_subcategorias = {
             'gestion ambiental','zona costera', 'manejo ambiental', 'ecologico', 
             'sendero', 'ecoturistico', 'natural'
             },
+
     'Energia renovable': {
             'energia renovable', 'energia solar', 'panel solar', 'sistema fotovoltaico',
             'energia eolica', 'generacion electrica limpia'
         },
+
     'Servicios publicos': {
             'servicio publico', 'servicios publicos', 'domiciliario', 'acueducto', 'alcantarillado', 
             'tratamiento de aguas', 'agua potable', 'residuos solidos', 'aseo urbano', 
             'disposicion final', 'gas domiciliario'
         },
+
     'Agro': {
             'agropecuario', 'agricola','ganaderia', 'desarrollo rural',
             'sistema de riego', 'distrito de riego','asistencia tecnica rural'
         },
+
     'Turismo': {
             'turismo', 'infraestructura turistica','atractivo turistico', 'ecoturismo',
             'turismo cultural', 'ruta turistica'
@@ -190,20 +205,25 @@ dic_subcategorias = {
     'Aeropuerto': {
             'aeropuerto', 'infraestructura aeroportuaria', 'terminal aereo', 'aviacion civil'
         },
+
     'Puente': {
             'puente vehicular', 'puente peatonal', 'paso elevado', 'interseccion vial','rotonda vehicular', 'puente'
         },
+
     'Puerto': {
             'puerto', 'infraestructura portuaria', 'muelle', 'embarcadero', 
             'terminal fluvial', 'navegacion fluvial'
         },
+
     'Transporte publico': {
             'transporte publico', 'movilidad urbana','sistema de transporte masivo',
             'terminal de transporte', 'bus','metro', 'cicloruta', 'bicicarril'
         },
+
     'Tren': {
             'tren', 'ferrocarril', 'infraestructura ferroviaria', 'red ferroviaria'
         },
+
     'Vias': {
             'vias', 'via', 'via nacional', 'carretera', 'red vial', 'corredor vial', 'pavimentacion', 
             'mejoramiento vial', 'glorieta', 'interseccion vial'
@@ -216,34 +236,30 @@ dic_subcategorias = {
             'parque urbano', 'plaza publica', 'espacio publico', 'zona recreativa',
             'escenario recreativo', 'plazoleta'
         },
+
     'Vias urbanas': {
             'via urbana', 'infraestructura urbana', 'anden', 'andenes',
             'malla vial urbana', 'pavimentacion urbana'
         },
+
     'Vivienda': {
             'vivienda', 'proyecto habitacional', 'mejoramiento de vivienda',
             'urbanizacion', 'solucion de vivienda'
         },
+
     'Educacion': {
             'educacion', 'institucion educativa', 'colegio', 'escuela', 'universidad', 
             'infraestructura educativa', 'aulas', 'sede educativa'
         },
+
     'Deporte': {
             'deporte', 'escenario deportivo', 'polideportivo', 'coliseo',
             'cancha deportiva', 'unidad deportiva'
     },
-
-    'Publico': {
-        'batallon', 'batallones', 'infanteria', 'estacion de policia', 'policia',
-        'aerocivil', 'insituto nacional de medicina legal', 'oficinas', 
-        'base naval', 'palacio de justucia', 'juzgado', 'superintendencia', 
-        'militar', 'militares', 'consejo', 'inpec', 'pabellon', 'pabellones'
-        'hospital', 'centro de salud', 'eps', 'clinica', 'salud'
-    }
 }
 
 df[["subcategorias", "SUB"]] = df["texto"].apply(
-    lambda x: pd.Series(clasificar(x, OBJETO))
+    lambda x: pd.Series(clasificar(x, dic_subcategorias))
 )
 
 
@@ -276,11 +292,9 @@ dic_macro = {
         'Educacion',
         'Deporte'
     },
-    'Publico': {
-        'Publico'
-    },
     'Otros': {
-        'Otros' 
+        'Otros',
+        'Publico'
     }
 }
 df['MACRO'] = df['SUB'].map(
@@ -291,7 +305,7 @@ df['MACRO'] = df['SUB'].map(
 # FILTRO FINAL
 # -------------------------
 
-contratos = df[~df['MACRO'].isin(['Otros', 'Publico'])]
+contratos = df[~df['MACRO'].isin(['Otros'])]
 print(f"📍 DataFrame filtrado por MACRO categorias:\n Dimensiones: {contratos.shape}")
 print(f"Representa: {round((contratos.shape[0] / df.shape[0] * 100),2)}%")
 
