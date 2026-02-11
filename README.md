@@ -5,7 +5,7 @@ Este proyecto tiene como **identificar las entidades que en mayor medida contrat
 
 ## Fuente de información
 
-La información utilizada proviene de **Datos Abiertos Colombia**, específicamente del conjunto de datos de **SECOP II – Contratos**, accesible mediante la API publicada. Concentra un esquema de datos estandarizado que detalla datos de entidades contratantes, información contractual, valores económicos y el origen de las fuentes de financiación.
+La información utilizada proviene de **Datos Abiertos Colombia**, específicamente del conjunto de datos de **SECOP II – Contratos** ([text](https://www.datos.gov.co/Estad-sticas-Nacionales/SECOP-II-Contratos-Electr-nicos/jbjy-vk9h/about_data)), accesible mediante la API publicada. Concentra un esquema de datos estandarizado que detalla datos de entidades contratantes, información contractual, valores económicos y el origen de las fuentes de financiación.
 
 Como filtro pricipal se utiliza el **United Nations Standard Products and Services Code (UNSPSC)** un Sistema de clasificación internacional que organiza bienes y servicios en una jerarquía de segmentos, familias, clases y productos. 
 

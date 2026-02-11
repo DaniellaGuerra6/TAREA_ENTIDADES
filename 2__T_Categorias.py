@@ -302,15 +302,8 @@ df['MACRO'] = df['SUB'].map(
     )
 
 
-# FILTRO FINAL
-# -------------------------
-
-contratos = df[~df['MACRO'].isin(['Otros'])]
-print(f"📍 DataFrame filtrado por MACRO categorias:\n Dimensiones: {contratos.shape}")
-print(f"Representa: {round((contratos.shape[0] / df.shape[0] * 100),2)}%")
-
 print("Tabla de conteo por MACRO categorias proyecto:")
-tabla = (contratos["MACRO"]
+tabla = (df["MACRO"]
          .value_counts(dropna=False)
          .rename("conteo").reset_index()
          )
@@ -321,4 +314,4 @@ tabla.columns = ["MACRO", "conteo", "porcentaje"]
 print(tabla)
 
 # Exportar resultados
-contratos.to_excel(os.path.join(OUT_PATH, 'SECOP_CATEGORIZED.xlsx'), index=False)
+df.to_excel(os.path.join(OUT_PATH, 'SECOP_CATEGORIZED.xlsx'), index=False)

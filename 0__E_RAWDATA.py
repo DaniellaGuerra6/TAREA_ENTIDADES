@@ -60,18 +60,18 @@ def download_year(year):
             "$limit": CHUNK_SIZE,
             "$offset": offset,
             "$select": ", ".join(COLUMNS),
-            "$where":   f"orden='Nacional' "
+            "$where":  
+                        f"orden='Nacional' "
                         f"AND tipo_de_contrato='Obra' "
-                        f"AND codigo_de_categoria_principal like 'V1.72%' "
-                        f"AND date_extract_y(fecha_de_firma)={year}"
+                        f"AND date_extract_y(fecha_de_firma)={year}"  
         }
 
         r = requests.get(BASE_URL, params=params, timeout=60)
         r.raise_for_status()
         data = r.json()
-
+        
         if not data:
-            break  # ← condición real de salida
+            break  # condición real de salida
 
         df = pd.DataFrame(data)
         df['anio'] = year
