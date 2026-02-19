@@ -61,12 +61,13 @@ def download_year(year):
             "$offset": offset,
             "$select": ", ".join(COLUMNS),
             "$where":  
+                        #f"orden='Territorial' "
                         f"orden='Nacional' "
                         f"AND tipo_de_contrato='Obra' "
                         f"AND date_extract_y(fecha_de_firma)={year}"  
         }
 
-        r = requests.get(BASE_URL, params=params, timeout=60)
+        r = requests.get(BASE_URL, params=params, timeout=120)
         r.raise_for_status()
         data = r.json()
         
@@ -106,6 +107,29 @@ print(f"\n -----------------------"
       f"\nColumnas: {list(df_final.columns)}")
 
 # EXPORTAR - Datos RAW consolidados
-output_file = os.path.join(RAW_PATH, "SECOP_RAW__2019_2026.xlsx")
+output_file = os.path.join(RAW_PATH, "SECOP_RAW_ALL__2019_2026.xlsx")
+#output_file = os.path.join(RAW_PATH, "SECOP_RAW_ALL__TERRITORIAL.xlsx")
 df_final.to_excel(output_file, index=False)
 print(f"📁 Archivo creado en:\n{output_file}")
+
+
+excluir = ['defensa', 'Información Estadística', 'Relaciones Exteriores', 
+            'Tecnologías de la Información y las Comunicaciones', 
+             'Minas y Energía',
+            'Ley de Justicia', 'Hacienda y Crédito Público', 
+            'Inteligencia Estratégica y Contrainteligencia',
+]
+df_TOTAL = df_final[~df_final["sector"].isin(excluir)].copy()
+
+# Descriptivo del dataset
+print(f"\n -----------------------"
+      f"\nRegistros descargados"
+      f"\nDimensiones: {df_TOTAL.shape}"
+      f"\nColumnas: {list(df_TOTAL.columns)}")
+
+# EXPORTAR - Datos RAW consolidados
+output_file = os.path.join(RAW_PATH, "SECOP_RAW__2019_2026.xlsx")
+#output_file = os.path.join(RAW_PATH, "SECOP_RAW__TERRITORIAL.xlsx")
+df_TOTAL.to_excel(output_file, index=False)
+print(f"📁 Archivo creado en:\n{output_file}")
+    

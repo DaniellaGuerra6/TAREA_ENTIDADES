@@ -165,7 +165,7 @@ dic_subcategorias = {
             'hospital', 'centro de salud', 'eps', 'clinica', 'salud',
             'naval', 'navales', 'guardacostas', 'policial', 'artillería', 
             'ejercito', 'militar', 'escuela naval', 'policiales', 'escuela de policia',
-            'escuela militar'
+            'escuela militar',
             },
 
     'Rio': {
@@ -221,12 +221,13 @@ dic_subcategorias = {
         },
 
     'Tren': {
-            'tren', 'ferrocarril', 'infraestructura ferroviaria', 'red ferroviaria'
+            'tren', 'ferrocarril', 'infraestructura ferroviaria', 'red ferroviaria',
+            'ferrea', 'ferreos'
         },
 
     'Vias': {
             'vias', 'via', 'via nacional', 'carretera', 'red vial', 'corredor vial', 'pavimentacion', 
-            'mejoramiento vial', 'glorieta', 'interseccion vial'
+            'mejoramiento vial', 'glorieta', 'interseccion vial', 'carrera', 'calle'
         },
     'Vias terciarias': {
             'via terciaria', 'red vial terciaria', 'camino rural', 'mejoramiento de vias rurales'
@@ -234,7 +235,7 @@ dic_subcategorias = {
     
     'Parques y plazas': {
             'parque urbano', 'plaza publica', 'espacio publico', 'zona recreativa',
-            'escenario recreativo', 'plazoleta'
+            'escenario recreativo', 'plazoleta', 'parque infantil', 'parque'
         },
 
     'Vias urbanas': {
@@ -248,8 +249,9 @@ dic_subcategorias = {
         },
 
     'Educacion': {
-            'educacion', 'institucion educativa', 'colegio', 'escuela', 'universidad', 
-            'infraestructura educativa', 'aulas', 'sede educativa'
+            'educacion', 'institucion educativa', 'institución educativa agropecuaria',
+            'colegio', 'escuela', 'universidad', 
+            'infraestructura educativa', 'aulas', 'sede educativa', 'ie', 'iea', 'campus', 
         },
 
     'Deporte': {
@@ -313,5 +315,11 @@ tabla["porcentaje"] = (
 tabla.columns = ["MACRO", "conteo", "porcentaje"]
 print(tabla)
 
+
+print(f"DF total dimension {df.shape}")
+df_final = df[~df["MACRO"].isin(["Otros"])].copy()
+print(f"DF final dimension {df_final.shape}")
+
 # Exportar resultados
-df.to_excel(os.path.join(OUT_PATH, 'SECOP_CATEGORIZED.xlsx'), index=False)
+df.to_excel(os.path.join(OUT_PATH, 'SECOP_CATEGORED_ALL.xlsx'), index=False)
+df_final.to_excel(os.path.join(OUT_PATH, 'SECOP_CATEGORIZED.xlsx'), index=False)

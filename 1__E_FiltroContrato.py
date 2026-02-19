@@ -24,7 +24,7 @@ DATAPATH = os.path.join(BASE_PATH, "data", "RAW")
 os.makedirs(DATAPATH, exist_ok=True)
 df = pd.read_excel(os.path.join(DATAPATH, "SECOP_RAW__2019_2026.xlsx"))
 df = df.drop(columns=['orden', 'tipo_de_contrato'])
-print(f"📍 DATASET ORIGINAL - Dimensión: {df.shape}")
+print(f"\n------\n📍 DATASET ORIGINAL - Dimensión: {df.shape}")
 
 
 # RENOMBRAR / NORMALIZAR
@@ -64,6 +64,7 @@ ESTADOS_CORE = [
 df["estado_contrato"] = (df["estado_contrato"].str.strip().str.lower())
 filtro = df[df["estado_contrato"].isin(ESTADOS_CORE)].copy()
 
+print(f"➡️ Filtro 1: Estado del contrado \nCantidad de contratos: {filtro.shape[0]} ")
 print("\nTabla 1: Estado de los contratos")
 tabla_1 = (
     filtro["estado_contrato"]
@@ -80,30 +81,37 @@ print(tabla_1)
 # FILTRO - Categorias
 # -----------------------
 CATEGORIAS = [
-    "77110000",
-    "95111601",
-    "95111602",
-    "95111603",
-    "95111604",
-    "95111605",
-    "95121507",
-    "95121509",
-    "95121511",
-    "95121600",
-    "95121700",
-    "95121900",
-    "95101500",
-    "95101600",
-    "95101700",
-    "95101800"
+    "701117",
+    "721015",
+    "721029",
+    "721211",
+    "721410",
+    "721411",
+    "721412",
+    "721515",
+    "771100",
+    "831015",
+    "951015",
+    "951016",
+    "951017",
+    "951018",
+    "951115",
+    "951116",
+    "951215",
+    "951216",
+    "951217",
+    "951219",
+    "951223"
 ]
 filtro = filtro[
     filtro['codigo_categoria']
         .astype(str)
-        .str.split(".")
-        .str[-1]
+        .str.split(".")   # separa en ['v1', '########']
+        .str[1]           # toma la parte numérica
+        .str[:6]          # primeros 6 dígitos
         .isin(CATEGORIAS)
 ].copy()
+
 
 
 print("\nCantidad de contratos:", filtro.shape[0])
